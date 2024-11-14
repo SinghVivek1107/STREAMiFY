@@ -1,0 +1,27 @@
+{
+  "name": "streamify",
+  "version": "1.0.0",
+  "description": "A video streaming website backend",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon src/index.js"
+  },
+  "keywords": [
+    "Node",
+    "Javascript",
+    "Mern"
+  ],
+  "author": "Vivek Singh",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "mongodb": "^6.10.0",
+    "mongoose": "^8.8.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.7",
+    "prettier": "^3.3.3"
+  }
+}
