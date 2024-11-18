@@ -4,7 +4,7 @@ const userSchema = new Schema(
   {
     username: {
       type: String,
-      requiered: true,
+      required: true,
       unique: true,
       lowercase: true,
       trim: true, //for removing trailing and leading whitespaces
