@@ -6,6 +6,7 @@ dotenv.config({
 import { v2 as cloudinary } from "cloudinary";
 import { asyncHandler } from "./asyncHandler.js";
 import fs from "fs";
+import { ApiError } from "./apiError.js";
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -18,22 +19,31 @@ console.log("CLOUDINARY_API_KEY:", process.env.CLOUDINARY_API_KEY);
 console.log("CLOUDINARY_API_SECRET:", process.env.CLOUDINARY_API_SECRET);*/
 
 const uploadOnCloudinary = asyncHandler(async (localFilePath) => {
-  try {
-    if (!localFilePath) return null;
+  if (!localFilePath) {
+    throw new ApiError(400, "File path is required for upload");
+  }
 
-    //upload the file on cloudinary
+  //upload the file on cloudinary
+  try {
     const response = await cloudinary.uploader.upload(localFilePath, {
       resource_type: "auto",
     });
 
     //console.log("Response: ", response);
-    
-    console.log("File is uploaded successfully ", response.url);
-    fs.unlinkSync(localFilePath);
+    //console.log("File is uploaded successfully ", response.url);
+
     return response;
   } catch (error) {
-    fs.unlinkSync(localFilePath); //synchronus way
-    return null;
+    throw new ApiError(
+      500,
+      error?.message || "Failed to upload file to Cloudinary"
+    );
+  } finally {
+    try {
+      fs.promises.unlink(localFilePath);
+    } catch (error) {
+      console.error("Failed to delete local file:", error);
+    }
   }
 });
 
