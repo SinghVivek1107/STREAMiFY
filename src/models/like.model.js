@@ -11,7 +11,7 @@ const likeSchema = new Schema(
       ref: "Comment",
     },
     likedBy: {
-      types: Schema.Types.ObjectId,
+      type: Schema.Types.ObjectId,
       ref: "User",
     },
   },
