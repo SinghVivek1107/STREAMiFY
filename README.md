@@ -65,6 +65,6 @@ This project is licensed under the MIT License. See the `LICENSE` file for detai
 
 For questions or support, please contact:
 - **Name**: Vivek Singh
-- **Email**: viveksingh@example.com
+- **Email**: viveksinghvs1107@gmail.com
 - **GitHub**: [SinghVivek1107](https://github.com/SinghVivek1107)
 
